@@ -1,0 +1,14 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: storage:1.16.0
+    kbld.carvel.dev/origins: |
+      - local:
+          path: /Users/joaopereira/workspace/carvel/cncf-luxemburg-presentation/storage
+      - git:
+          dirty: true
+          remoteURL: git@github.com:joaopapereira/demo-intro-carvel
+          sha: 8247a182565a84138af0e131b124a2356b663e38
+  image: ghcr.io/joaopapereira/demo-intro-carvel/storage@sha256:bf0cda1a4c1b0a31ff8e82179e8d12e525a28e42106fa4262d9c50a2327e9369
+kind: ImagesLock
