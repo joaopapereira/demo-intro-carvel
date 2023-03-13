@@ -1,0 +1,24 @@
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: frontend
+  namespace: step3
+spec:
+  fetch:
+    - git:
+        url: https://github.com/joaopapereira/demo-intro-carvel
+        ref: origin/main
+  template:
+    - ytt:
+        paths:
+          - go-frontend/config
+          - config-step2/frontend
+          - config-step3/schema.yaml
+          - config-step3/values.yaml
+    - kbld:
+        paths:
+          - config-step3/frontend/images.yaml
+          - '-'
+  deploy:
+    - kapp: { }
+  serviceAccountName: step3-ns-sa

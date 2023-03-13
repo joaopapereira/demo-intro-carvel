@@ -1,0 +1,35 @@
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: storage
+  namespace: step3
+spec:
+  fetch:
+    - git:
+        url: https://github.com/joaopapereira/demo-intro-carvel
+        ref: origin/main
+        subPath: storage/chart
+    - git:
+        url: https://github.com/joaopapereira/demo-intro-carvel
+        ref: origin/main
+        subPath: config-step2
+    - git:
+        url: https://github.com/joaopapereira/demo-intro-carvel
+        ref: origin/main
+        subPath: config-step3
+  template:
+    - helmTemplate:
+        path: 0/
+    - ytt:
+        paths:
+          - '-'
+          - 1/storage/storage-namespace.yaml
+          - 2/schema.yaml
+          - 2/values.yaml
+    - kbld:
+        paths:
+          - 2/storage/images.yaml
+          - '-'
+  deploy:
+    - kapp: { }
+  serviceAccountName: step3-ns-sa
