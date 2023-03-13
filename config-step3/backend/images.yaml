@@ -1,0 +1,14 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: backend-image
+    kbld.carvel.dev/origins: |
+      - local:
+          path: /Users/joaopereira/workspace/carvel/cncf-luxemburg-presentation/backend
+      - git:
+          dirty: true
+          remoteURL: git@github.com:joaopapereira/demo-intro-carvel
+          sha: 6b39c9ea1355e6a80489461bda3a139e5a12a638
+  image: ghcr.io/joaopapereira/demo-intro-carvel/backend@sha256:68a6919fcaefe4b437d4331092c217a767fd22ec19f280b911f2aeae3cfbc04f
+kind: ImagesLock
