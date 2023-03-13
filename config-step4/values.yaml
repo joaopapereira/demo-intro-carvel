@@ -1,0 +1,11 @@
+#@data/values
+---
+deployment:
+  namespace: step4
+apps:
+  storage:
+    address: storage.step4.svc.cluster.local
+    port: 8081
+  backend:
+    address: backend.step4.svc.cluster.local
+    port: 8080
