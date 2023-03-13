@@ -1,0 +1,14 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: go-frontend-image
+    kbld.carvel.dev/origins: |
+      - local:
+          path: /Users/joaopereira/workspace/carvel/cncf-luxemburg-presentation/go-frontend
+      - git:
+          dirty: true
+          remoteURL: git@github.com:joaopapereira/demo-intro-carvel
+          sha: 5eec5e1c9aa311d9bc60bf0c4b5bbdb733108b9e
+  image: ghcr.io/joaopapereira/demo-intro-carvel/frontend@sha256:a74cc7ee8b90498b92a8d8246a86433c0d4cd337afe3eb20a4a2eb46fa9df4ff
+kind: ImagesLock
