@@ -1,0 +1,16 @@
+#@data/values-schema
+---
+deployment:
+  namespace: ""
+apps:
+  storage:
+    address: ""
+    port: 0
+  backend:
+    address: ""
+    port: 0
+
+#@schema/type any=True
+backend:
+#@schema/type any=True
+storage:

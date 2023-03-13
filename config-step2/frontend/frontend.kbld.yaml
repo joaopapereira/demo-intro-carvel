@@ -1,0 +1,11 @@
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+  - image: go-frontend-image
+    path: go-frontend
+    pack:
+      build:
+        builder: paketobuildpacks/builder:base
+destinations:
+  - image: go-frontend-image
+    newImage: ghcr.io/joaopapereira/demo-intro-carvel/frontend

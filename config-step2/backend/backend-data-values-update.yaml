@@ -1,0 +1,12 @@
+#@ load("@ytt:overlay", "overlay")
+#@data/values
+
+#@overlay/match by=overlay.all
+---
+backend:
+  #@overlay/replace via=lambda left, right: right
+  namespace: step2
+
+storage:
+  #@overlay/replace via=lambda left, right: right
+  address: storage.step2.svc.cluster.local

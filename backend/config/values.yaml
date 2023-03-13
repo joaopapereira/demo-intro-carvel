@@ -1,0 +1,8 @@
+#@data/values
+---
+backend:
+  namespace: step1
+  port: 8080
+storage:
+  port: 8081
+  address: storage.step1.svc.cluster.local

@@ -1,0 +1,8 @@
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+  - image: storage:1.16.0
+    path: storage
+destinations:
+  - image: storage:1.16.0
+    newImage: ghcr.io/joaopapereira/demo-intro-carvel/storage

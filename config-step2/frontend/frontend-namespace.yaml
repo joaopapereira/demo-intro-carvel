@@ -1,0 +1,36 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#! Find and update the namespaces on all the frontend manifests
+#@overlay/match by=overlay.subset({"metadata":{"name":"go-frontend"}}), expects="3+"
+---
+metadata:
+  namespace: #@ data.values.deployment.namespace
+
+#! Find and update the namespace on the environment variable that points to the backend service
+#@overlay/match by=overlay.subset({"kind":"Deployment"}), expects="1+"
+---
+spec:
+  template:
+    spec:
+      containers:
+        #@overlay/match by="name"
+        - name: go-frontend
+          env:
+            #@overlay/match by="name"
+            -
+              name: BACKEND_ADDRESS
+              #@overlay/replace via=lambda left, right: right
+              value: #@ "backend." + data.values.deployment.namespace + ".svc.cluster.local:8080"
+
+#! To prepare for the build it would be easier if instead of a full refname of the image we would have
+#! a string that could be replaced by kbld more easily
+#@overlay/match by=overlay.subset({"kind":"Deployment"}), expects="1+"
+---
+spec:
+  template:
+    spec:
+      containers:
+        #@overlay/match by="name", expects="1+"
+        - name: go-frontend
+          image: go-frontend-image

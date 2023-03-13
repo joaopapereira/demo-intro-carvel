@@ -1,0 +1,9 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#! Find and update the namespaces on all the storage manifests
+#@overlay/match by=overlay.subset({"metadata":{"name":"storage"}}), expects="3+"
+---
+metadata:
+  #@overlay/match missing_ok=True
+  namespace: #@ data.values.deployment.namespace

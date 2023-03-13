@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package board.v1;
+option go_package = "backend/gen/board/v1;boardv1";
+
+message MessageType {
+  int64 id = 1;
+  string title = 2;
+  string message = 3;
+  string timestamp = 4;
+}
+
+message MessageRequest {
+  int64 number = 1;
+}
+
+message AllMessagesRequest {
+}
+
+message AllMessagesResponse {
+  repeated MessageType messages = 1;
+}
+
+message AddMessageRequest {
+  MessageType message = 1;
+}
+
+message AddMessageResponse {
+  int64 result_code = 1;
+  oneof result {
+    string error = 2;
+    MessageType message = 3;
+  }
+}
+
+service MessageService {
+  rpc AllMessages(AllMessagesRequest) returns (AllMessagesResponse){}
+  rpc AddMessage(AddMessageRequest) returns (AddMessageResponse){}
+}
